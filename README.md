@@ -7,9 +7,6 @@ interface:
 python reproduce.py run --setting SETTING --method METHOD [options]
 ```
 
-The interface uses experiment names rather than paper table numbers. R is
-called internally for ARMAr-LASSO, LASSO, ARMA, and rolling-window metric
-post-processing.
 
 ## Installation
 
@@ -67,7 +64,6 @@ pod_metrics
 kubernetes
 ```
 
-`kubernetes` is an alias for `pod_metrics`.
 
 Available methods:
 
@@ -117,8 +113,6 @@ python reproduce.py run \
   --horizon 2
 ```
 
-This setting reads the corresponding saved forecast object from
-`../results/rolling_pod_original_style_forecasts_h<h>.rds`.
 
 ### `rolling-predicted-regressors`
 
@@ -142,7 +136,6 @@ python reproduce.py run \
   --horizon 3
 ```
 
-This setting reads `../results/rollingLASSO_forecasts.rds`.
 
 For both rolling settings, a single `run` command prints and saves exactly one
 row: the selected method at the selected horizon.
@@ -155,19 +148,6 @@ Every result reports:
 RMSE, MAE, MASE
 ```
 
-`RMSE` is calculated separately for every variable and then averaged across
-variables. LASSO-family methods also report `AVG_SELECTED_VARIABLES` when
-that information is available. The value is `NA` for ARMA.
-
-New outputs use setting-based names:
-
-```text
-results/fixed_split_<dataset>_<method>_metrics.csv
-results/rolling_observed_regressors_<method>_metrics.csv
-results/rolling_predicted_regressors_<method>_metrics.csv
-```
-
-Hyphens in method names are written as underscores in filenames.
 
 ## Run Complete Experiments
 
@@ -201,32 +181,6 @@ python reproduce.py run-all --setting rolling-predicted-regressors
 A subset of rolling horizons can be selected with, for example,
 `--horizons 2,3,4`.
 
-## Run On SLURM
-
-The same interface can be passed to the provided SLURM wrapper.
-
-One fixed-split method:
-
-```bash
-cd /srv/hpc/home/g.squillace/Tonini/reproducibility
-sbatch --export=ALL,CMD="run --setting fixed-split --dataset exathlon1 --method armar-lasso" run_reproducibility.slurm
-```
-
-One rolling method and horizon:
-
-```bash
-sbatch --export=ALL,CMD="run --setting rolling-observed-regressors --method lasso --horizon 2" run_reproducibility.slurm
-```
-
-A complete setting:
-
-```bash
-sbatch --export=ALL,CMD="run-all --setting rolling-predicted-regressors" run_reproducibility.slurm
-```
-
-SLURM logs are written to `slurm_repro_<jobid>.out` and
-`slurm_repro_<jobid>.err`. The wrapper requests one GPU from the
-`gpu_l40s` partition.
 
 ## Dry Run
 
