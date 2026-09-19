@@ -16,7 +16,6 @@ METHODS = {
     "nhits": "NHITS",
     "random-forest": "Random Forest",
     "rf": "Random Forest",
-    "naive": "Naive",
 }
 ALL_METHODS = ["tide", "transformer", "dlinear", "nhits", "random-forest"]
 
@@ -129,9 +128,7 @@ def main():
     for method in methods:
         method_name = METHODS[method]
         print(f"Running {method_name} on {args.dataset}")
-        if method == "naive":
-            y_pred = values_all[n_train - 1:n_train + n_test - 1]
-        elif method in {"random-forest", "rf"}:
+        if method in {"random-forest", "rf"}:
             y_pred = random_forest_predict(values_all, n_train, n_test, args.lags)
         else:
             y_pred = darts_predict(method, values_all, n_train, n_test, args.lags, args.epochs, features)

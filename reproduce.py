@@ -18,7 +18,7 @@ SETTINGS = (
 )
 FIXED_R_METHODS = {"lasso", "armar-lasso"}
 FIXED_PY_METHODS = {
-    "tide", "transformer", "dlinear", "nhits", "random-forest", "naive"
+    "tide", "transformer", "dlinear", "nhits", "random-forest"
 }
 ROLLING_METHODS = {
     "rolling-observed-regressors": {"armar-lasso", "lasso", "arma"},
