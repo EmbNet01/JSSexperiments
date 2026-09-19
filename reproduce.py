@@ -6,10 +6,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-PROJECT_ROOT = ROOT.parent
 RESULTS_DIR = ROOT / "results"
 CLUSTER_RSCRIPT = Path("/srv/hpc/home/g.squillace/miniforge3/envs/tonini-forecast/bin/Rscript")
 DEFAULT_RSCRIPT = str(CLUSTER_RSCRIPT) if CLUSTER_RSCRIPT.exists() else "Rscript"
+PROJECT_ROOT = ROOT
 
 SETTINGS = (
     "fixed-split",
