@@ -30,7 +30,7 @@ def metrics_frame(method_name, features, y_true, y_pred, train_values):
 
     out = pd.DataFrame(
         {
-            "Table": "Table1",
+            "Setting": "fixed-split",
             "Dataset": "",
             "Method": method_name,
             "Variable": features,
@@ -41,7 +41,7 @@ def metrics_frame(method_name, features, y_true, y_pred, train_values):
         }
     )
     mean = out[["RMSE", "MAE", "MASE"]].mean(numeric_only=True)
-    out.loc[len(out)] = ["Table1", "", method_name, "MEAN", *mean.tolist(), np.nan]
+    out.loc[len(out)] = ["fixed-split", "", method_name, "MEAN", *mean.tolist(), np.nan]
     return out
 
 
@@ -81,7 +81,7 @@ def darts_predict(method, values_all, n_train, n_test, lags, epochs, features):
     df["timestamp"] = times
     series_all = TimeSeries.from_dataframe(df, time_col="timestamp", value_cols=features, freq="5min")
     if not torch.cuda.is_available():
-        raise RuntimeError("Legacy Table 1 Darts runs expect a CUDA GPU, matching main.py.")
+        raise RuntimeError("The fixed-split Darts runs expect a CUDA GPU, matching main.py.")
     trainer_kwargs = {"accelerator": "cuda"}
     model_map = {
         "tide": TiDEModel,
@@ -141,7 +141,8 @@ def main():
 
     out = pd.concat(rows, ignore_index=True)
     args.results_dir.mkdir(parents=True, exist_ok=True)
-    out_path = args.results_dir / f"table1_{args.dataset}_ml_metrics.csv"
+    method_slug = "ml_methods" if args.method == "all" else args.method.replace("-", "_")
+    out_path = args.results_dir / f"fixed_split_{args.dataset}_{method_slug}_metrics.csv"
     out.to_csv(out_path, index=False)
     print(out[out["Variable"] == "MEAN"].to_string(index=False))
     print(f"Wrote {out_path}")

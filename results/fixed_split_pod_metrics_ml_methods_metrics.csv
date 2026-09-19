@@ -1,0 +1,116 @@
+"Setting","Dataset","Method","Variable","RMSE","MAE","MASE","AVG_SELECTED_VARIABLES"
+"fixed-split","pod_metrics","TiDE","adservice-cpu",1.54086949663301,0.681183078252991,4.9073528378527,NA
+"fixed-split","pod_metrics","TiDE","cartservice-cpu",0.850287399616686,0.510458869603586,3.20102309656106,NA
+"fixed-split","pod_metrics","TiDE","checkoutservice-cpu",1.24154828312081,0.822421494104006,3.29023194421779,NA
+"fixed-split","pod_metrics","TiDE","currencyservice-cpu",1.81536226600581,0.780500822994632,5.96808801644628,NA
+"fixed-split","pod_metrics","TiDE","emailservice-cpu",0.858722989167168,0.451990107735254,3.55350254747661,NA
+"fixed-split","pod_metrics","TiDE","frontend-cpu",0.738899177178075,0.422442633467719,3.17733350862559,NA
+"fixed-split","pod_metrics","TiDE","paymentservice-cpu",1.09602608319075,0.676119711681042,2.48838418497445,NA
+"fixed-split","pod_metrics","TiDE","productcatalogservice-cpu",0.85381620598655,0.496259347492557,3.52367901304658,NA
+"fixed-split","pod_metrics","TiDE","recommendationservice-cpu",0.90913252528093,0.55974970413248,3.9874557854039,NA
+"fixed-split","pod_metrics","TiDE","redis-cart-cpu",0.712389120912571,0.344057576384464,3.03360143356276,NA
+"fixed-split","pod_metrics","TiDE","shippingservice-cpu",1.39930513410598,0.705496494202008,3.76224939039092,NA
+"fixed-split","pod_metrics","TiDE","adservice-mem",1.49745689517426,1.04080932956792,2.92970073801423,NA
+"fixed-split","pod_metrics","TiDE","cartservice-mem",1.6876032267801,1.18132827322769,3.13829595068405,NA
+"fixed-split","pod_metrics","TiDE","checkoutservice-mem",1.58833002568573,1.17065628866437,2.87952395894726,NA
+"fixed-split","pod_metrics","TiDE","currencyservice-mem",1.45630605824675,1.04869272000831,2.58704836216751,NA
+"fixed-split","pod_metrics","TiDE","emailservice-mem",0.86471259997559,0.660811494611364,2.02061521360133,NA
+"fixed-split","pod_metrics","TiDE","frontend-mem",1.52363394510239,1.04435194684378,2.96242117503863,NA
+"fixed-split","pod_metrics","TiDE","paymentservice-mem",1.11626909800068,0.855363247139522,2.28595781062449,NA
+"fixed-split","pod_metrics","TiDE","productcatalogservice-mem",1.48707790051465,0.944726734428484,2.59185715509668,NA
+"fixed-split","pod_metrics","TiDE","recommendationservice-mem",1.35144154930396,0.872591620026066,2.11682264795666,NA
+"fixed-split","pod_metrics","TiDE","redis-cart-mem",1.47633271712456,0.962339407935627,2.34176203775233,NA
+"fixed-split","pod_metrics","TiDE","shippingservice-mem",2.52613113763101,1.63571975379175,3.76313924389874,NA
+"fixed-split","pod_metrics","TiDE","MEAN",1.29962062885173,0.812185029831619,3.20500209328821,NA
+"fixed-split","pod_metrics","Transformer","adservice-cpu",2.41653174693552,0.875524872959099,6.30742249344418,NA
+"fixed-split","pod_metrics","Transformer","cartservice-cpu",0.826192811166638,0.485116477560682,3.04210415699118,NA
+"fixed-split","pod_metrics","Transformer","checkoutservice-cpu",1.52892901356685,1.02332584687398,4.09398272645668,NA
+"fixed-split","pod_metrics","Transformer","currencyservice-cpu",4.7320152940137,1.65904683060038,12.6858770890718,NA
+"fixed-split","pod_metrics","Transformer","emailservice-cpu",1.14544299070762,0.633880926655343,4.98351058821393,NA
+"fixed-split","pod_metrics","Transformer","frontend-cpu",0.667441081338856,0.412531224220003,3.10278645720239,NA
+"fixed-split","pod_metrics","Transformer","paymentservice-cpu",1.43059637383504,0.715086805014822,2.63179828326352,NA
+"fixed-split","pod_metrics","Transformer","productcatalogservice-cpu",0.72047563500651,0.408249449244179,2.89876658980436,NA
+"fixed-split","pod_metrics","Transformer","recommendationservice-cpu",1.1491764101134,0.791134806005601,5.63576011912424,NA
+"fixed-split","pod_metrics","Transformer","redis-cart-cpu",1.2128228410405,0.598113089183855,5.27364269622497,NA
+"fixed-split","pod_metrics","Transformer","shippingservice-cpu",1.47711289916586,0.707612963144705,3.77353602902751,NA
+"fixed-split","pod_metrics","Transformer","adservice-mem",1.19461652712698,0.898353344876817,2.52871143898737,NA
+"fixed-split","pod_metrics","Transformer","cartservice-mem",2.43893783795551,1.80763460614365,4.8021303589706,NA
+"fixed-split","pod_metrics","Transformer","checkoutservice-mem",1.89293052509494,1.38599717908781,3.40920911019076,NA
+"fixed-split","pod_metrics","Transformer","currencyservice-mem",1.87159963948465,1.35988693683597,3.35474177092276,NA
+"fixed-split","pod_metrics","Transformer","emailservice-mem",1.15184342673275,0.854408173475426,2.61259098552018,NA
+"fixed-split","pod_metrics","Transformer","frontend-mem",1.63896139642746,1.15764506224907,3.28378977599448,NA
+"fixed-split","pod_metrics","Transformer","paymentservice-mem",2.03674436554513,1.48264450048853,3.96236661746394,NA
+"fixed-split","pod_metrics","Transformer","productcatalogservice-mem",1.39225775437168,1.04934614811166,2.87888044557314,NA
+"fixed-split","pod_metrics","Transformer","recommendationservice-mem",1.84305638358624,1.35982125734355,3.29879449751275,NA
+"fixed-split","pod_metrics","Transformer","redis-cart-mem",0.859023654922983,0.683200249125836,1.66250326484898,NA
+"fixed-split","pod_metrics","Transformer","shippingservice-mem",2.16146686313112,1.62187830632715,3.73129558973631,NA
+"fixed-split","pod_metrics","Transformer","MEAN",1.62673524869409,0.998656320705823,4.08882732202482,NA
+"fixed-split","pod_metrics","DLinear","adservice-cpu",0.923244538841647,0.352839995328055,2.54191627428829,NA
+"fixed-split","pod_metrics","DLinear","cartservice-cpu",0.44329798794328,0.267825250030662,1.67949831463633,NA
+"fixed-split","pod_metrics","DLinear","checkoutservice-cpu",1.02684168928264,0.533028126535203,2.13246635899681,NA
+"fixed-split","pod_metrics","DLinear","currencyservice-cpu",1.65201688645245,0.657647655100266,5.02869308246058,NA
+"fixed-split","pod_metrics","DLinear","emailservice-cpu",0.58387599065137,0.26574159124405,2.08923470955549,NA
+"fixed-split","pod_metrics","DLinear","frontend-cpu",0.417231784184707,0.249592970296654,1.87727290101166,NA
+"fixed-split","pod_metrics","DLinear","paymentservice-cpu",0.695180666570041,0.347473554398005,1.27883817395454,NA
+"fixed-split","pod_metrics","DLinear","productcatalogservice-cpu",0.502837621084956,0.298419149027608,2.11891886335818,NA
+"fixed-split","pod_metrics","DLinear","recommendationservice-cpu",0.643608019609176,0.33376760664026,2.37764051370204,NA
+"fixed-split","pod_metrics","DLinear","redis-cart-cpu",0.6732408255343,0.311478780661634,2.74634985652414,NA
+"fixed-split","pod_metrics","DLinear","shippingservice-cpu",1.01011721091356,0.462046070909831,2.46398467306244,NA
+"fixed-split","pod_metrics","DLinear","adservice-mem",0.585578959444733,0.454328284382447,1.27885662843603,NA
+"fixed-split","pod_metrics","DLinear","cartservice-mem",0.743291614947865,0.554093351241246,1.47199466897564,NA
+"fixed-split","pod_metrics","DLinear","checkoutservice-mem",1.04517091701596,0.779387769088121,1.91710049835399,NA
+"fixed-split","pod_metrics","DLinear","currencyservice-mem",1.04257550135158,0.704778671468205,1.73863751785935,NA
+"fixed-split","pod_metrics","DLinear","emailservice-mem",0.591785590221056,0.431305918565172,1.31883798613647,NA
+"fixed-split","pod_metrics","DLinear","frontend-mem",0.483527879479268,0.387972468497755,1.10052732652365,NA
+"fixed-split","pod_metrics","DLinear","paymentservice-mem",0.677183661954106,0.524315958021071,1.40123411133402,NA
+"fixed-split","pod_metrics","DLinear","productcatalogservice-mem",0.625045689808383,0.448897709852677,1.23155056249363,NA
+"fixed-split","pod_metrics","DLinear","recommendationservice-mem",1.07948693962298,0.698964025331842,1.6956189412926,NA
+"fixed-split","pod_metrics","DLinear","redis-cart-mem",0.544448278995192,0.434181876724038,1.05654058018211,NA
+"fixed-split","pod_metrics","DLinear","shippingservice-mem",1.23714187359339,0.84381554282011,1.94128326471403,NA
+"fixed-split","pod_metrics","DLinear","MEAN",0.783033187613756,0.470086469371132,1.93122708217509,NA
+"fixed-split","pod_metrics","NHITS","adservice-cpu",1.88420246358678,0.689855989441184,4.96983388984974,NA
+"fixed-split","pod_metrics","NHITS","cartservice-cpu",0.595956164259363,0.392920800161006,2.46395670901238,NA
+"fixed-split","pod_metrics","NHITS","checkoutservice-cpu",1.21439194539191,0.825783549272891,3.30368239680712,NA
+"fixed-split","pod_metrics","NHITS","currencyservice-cpu",4.16415315816054,1.55405928087181,11.8830913405481,NA
+"fixed-split","pod_metrics","NHITS","emailservice-cpu",0.905548341168628,0.519610050344207,4.08512400159454,NA
+"fixed-split","pod_metrics","NHITS","frontend-cpu",0.671447143436675,0.388432603086128,2.92153260076324,NA
+"fixed-split","pod_metrics","NHITS","paymentservice-cpu",0.978744737339077,0.539360754578558,1.98505789507631,NA
+"fixed-split","pod_metrics","NHITS","productcatalogservice-cpu",0.673206494471984,0.444012158629385,3.15269895228188,NA
+"fixed-split","pod_metrics","NHITS","recommendationservice-cpu",0.746725149347447,0.509084774026408,3.62653702622091,NA
+"fixed-split","pod_metrics","NHITS","redis-cart-cpu",0.87952088042864,0.437386956490788,3.85649899698597,NA
+"fixed-split","pod_metrics","NHITS","shippingservice-cpu",1.01148061260178,0.465009637170394,2.47978868548322,NA
+"fixed-split","pod_metrics","NHITS","adservice-mem",1.24387982845501,0.923499846215443,2.59949455116492,NA
+"fixed-split","pod_metrics","NHITS","cartservice-mem",1.59767058994852,1.19225446513879,3.16732228028957,NA
+"fixed-split","pod_metrics","NHITS","checkoutservice-mem",1.81426895084242,1.33442622648309,3.2823573646793,NA
+"fixed-split","pod_metrics","NHITS","currencyservice-mem",1.56954447942388,1.18131925882282,2.91422834871048,NA
+"fixed-split","pod_metrics","NHITS","emailservice-mem",0.892153072944207,0.651413584190665,1.99187848470515,NA
+"fixed-split","pod_metrics","NHITS","frontend-mem",0.946827328946777,0.725566548236466,2.05815071527502,NA
+"fixed-split","pod_metrics","NHITS","paymentservice-mem",1.31078134123342,1.01190305241806,2.7043103547007,NA
+"fixed-split","pod_metrics","NHITS","productcatalogservice-mem",0.992174223800549,0.728163758930511,1.99771677871259,NA
+"fixed-split","pod_metrics","NHITS","recommendationservice-mem",1.35336953047453,1.04042995157294,2.52398216365664,NA
+"fixed-split","pod_metrics","NHITS","redis-cart-mem",0.964949453886542,0.776761755557065,1.89017635206628,NA
+"fixed-split","pod_metrics","NHITS","shippingservice-mem",2.32091657862564,1.64482124470483,3.78407814712687,NA
+"fixed-split","pod_metrics","NHITS","MEAN",1.30599602130792,0.817094374833792,3.34734081980504,NA
+"fixed-split","pod_metrics","Random Forest","adservice-cpu",2.5945261572094,0.829281376231933,5.9742768793777,NA
+"fixed-split","pod_metrics","Random Forest","cartservice-cpu",0.476931851764795,0.268873776481668,1.68607349157396,NA
+"fixed-split","pod_metrics","Random Forest","checkoutservice-cpu",1.2548804276694,0.875240301399854,3.50154223737789,NA
+"fixed-split","pod_metrics","Random Forest","currencyservice-cpu",4.73149260371647,1.56968501750618,12.002573304959,NA
+"fixed-split","pod_metrics","Random Forest","emailservice-cpu",1.21594504643824,0.750029828850979,5.8966620328481,NA
+"fixed-split","pod_metrics","Random Forest","frontend-cpu",0.602460872362181,0.428529343489376,3.2231137073483,NA
+"fixed-split","pod_metrics","Random Forest","paymentservice-cpu",1.37634280691619,0.609142811738932,2.24188307622822,NA
+"fixed-split","pod_metrics","Random Forest","productcatalogservice-cpu",0.438067067751795,0.265751762497868,1.88696477542506,NA
+"fixed-split","pod_metrics","Random Forest","recommendationservice-cpu",0.680083592943123,0.46566693184513,3.31724391768089,NA
+"fixed-split","pod_metrics","Random Forest","redis-cart-cpu",1.21233132280107,0.502592413049621,4.43142418413531,NA
+"fixed-split","pod_metrics","Random Forest","shippingservice-cpu",1.34535386683182,0.434221237321611,2.31560128056462,NA
+"fixed-split","pod_metrics","Random Forest","adservice-mem",1.37762260313863,0.99433155852464,2.79887373996717,NA
+"fixed-split","pod_metrics","Random Forest","cartservice-mem",2.64691227865628,2.06845580682464,5.49502338159611,NA
+"fixed-split","pod_metrics","Random Forest","checkoutservice-mem",2.60170042892458,1.97233135082025,4.8514456674123,NA
+"fixed-split","pod_metrics","Random Forest","currencyservice-mem",2.32810847554868,1.79891445692373,4.43779060412198,NA
+"fixed-split","pod_metrics","Random Forest","emailservice-mem",1.43362555501102,1.09239397490419,3.34029886425629,NA
+"fixed-split","pod_metrics","Random Forest","frontend-mem",1.67775179415731,1.25636282206603,3.56381374963476,NA
+"fixed-split","pod_metrics","Random Forest","paymentservice-mem",2.16512329059535,1.64469372544394,4.39544308261635,NA
+"fixed-split","pod_metrics","Random Forest","productcatalogservice-mem",1.35165622699074,1.0332149413837,2.83462449085678,NA
+"fixed-split","pod_metrics","Random Forest","recommendationservice-mem",2.03249017321954,1.55786336571179,3.77922544667825,NA
+"fixed-split","pod_metrics","Random Forest","redis-cart-mem",0.984005634946306,0.781785098622281,1.90240018286415,NA
+"fixed-split","pod_metrics","Random Forest","shippingservice-mem",2.2391923759634,1.71531480033285,3.94625572370186,NA
+"fixed-split","pod_metrics","Random Forest","MEAN",1.67120929334347,1.04157621372596,3.99193426460114,NA

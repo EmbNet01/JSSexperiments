@@ -1,0 +1,31 @@
+"Setting","Dataset","Method","Variable","RMSE","MAE","MASE","AVG_SELECTED_VARIABLES"
+"fixed-split","materna","TiDE","CPU.usage..MHZ.",0.106354114731831,0.0659897793116862,4.10631809889881,NA
+"fixed-split","materna","TiDE","Memory.usage..KB.",2.37139143744337,1.8222029554412,2.26917236727298,NA
+"fixed-split","materna","TiDE","Disk.write.throughput..KB.s.",1.46930057055608,0.231457000850871,1.76664287891948,NA
+"fixed-split","materna","TiDE","Network.received.throughput..KB.s.",0.569534219132517,0.283407908324162,0.962400335994829,NA
+"fixed-split","materna","TiDE","Network.transmitted.throughput..KB.s.",0.575433835420795,0.237556033669013,1.43300368641474,NA
+"fixed-split","materna","TiDE","MEAN",1.01840283545692,0.528122735519387,2.10750747350017,NA
+"fixed-split","materna","Transformer","CPU.usage..MHZ.",1.77636121065663,1.18618595807122,73.8122921321077,NA
+"fixed-split","materna","Transformer","Memory.usage..KB.",3.79709337855042,2.86975483084704,3.57367896016255,NA
+"fixed-split","materna","Transformer","Disk.write.throughput..KB.s.",1.59115293346293,0.19175888424999,1.46363888793349,NA
+"fixed-split","materna","Transformer","Network.received.throughput..KB.s.",0.462470264979975,0.182652921664235,0.620255215246264,NA
+"fixed-split","materna","Transformer","Network.transmitted.throughput..KB.s.",0.709400457874719,0.191364286548661,1.15436229439003,NA
+"fixed-split","materna","Transformer","MEAN",1.66729564910494,0.924343376276231,16.124845497968,NA
+"fixed-split","materna","DLinear","CPU.usage..MHZ.",0.05860177851773,0.0278625052111491,1.73378833241442,NA
+"fixed-split","materna","DLinear","Memory.usage..KB.",2.75914976225155,2.13229309182834,2.65532472574242,NA
+"fixed-split","materna","DLinear","Disk.write.throughput..KB.s.",1.5414571110084,0.188410802242209,1.43808396751484,NA
+"fixed-split","materna","DLinear","Network.received.throughput..KB.s.",0.632175904162885,0.381782029607077,1.29646048250134,NA
+"fixed-split","materna","DLinear","Network.transmitted.throughput..KB.s.",0.431865985026844,0.26234362220968,1.58252927499903,NA
+"fixed-split","materna","DLinear","MEAN",1.08465010819348,0.598538410219692,1.74123735663441,NA
+"fixed-split","materna","NHITS","CPU.usage..MHZ.",0.349275929297822,0.188249571163655,11.7141264790131,NA
+"fixed-split","materna","NHITS","Memory.usage..KB.",2.95830176703439,2.23612077948482,2.78462037806501,NA
+"fixed-split","materna","NHITS","Disk.write.throughput..KB.s.",1.55791311167433,0.170608594285209,1.30220497573381,NA
+"fixed-split","materna","NHITS","Network.received.throughput..KB.s.",0.728022332801319,0.421767452049094,1.43224351064844,NA
+"fixed-split","materna","NHITS","Network.transmitted.throughput..KB.s.",0.687401167646059,0.143852763443789,0.867759648669308,NA
+"fixed-split","materna","NHITS","MEAN",1.25618286169078,0.632119832085314,3.62019099842594,NA
+"fixed-split","materna","Random Forest","CPU.usage..MHZ.",0.134533103257716,0.0639313561573274,3.97822947150679,NA
+"fixed-split","materna","Random Forest","Memory.usage..KB.",3.47336693710887,2.62966730267354,3.27470019765348,NA
+"fixed-split","materna","Random Forest","Disk.write.throughput..KB.s.",1.70365792289084,0.602637250309909,4.59975201837847,NA
+"fixed-split","materna","Random Forest","Network.received.throughput..KB.s.",0.437037022456304,0.175499103488765,0.595962184552697,NA
+"fixed-split","materna","Random Forest","Network.transmitted.throughput..KB.s.",0.447620793635199,0.255126642063194,1.53899445504533,NA
+"fixed-split","materna","Random Forest","MEAN",1.23924315586979,0.745372330938546,2.79752766542735,NA

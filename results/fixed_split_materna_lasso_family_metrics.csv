@@ -1,0 +1,13 @@
+"Setting","Dataset","Method","Variable","RMSE","MAE","MASE","AVG_SELECTED_VARIABLES"
+"fixed-split","materna","LASSO","CPU.usage..MHZ.",0.0540861274859752,0.0161751206776115,1.00600652884302,NA
+"fixed-split","materna","LASSO","Memory.usage..KB.",2.76992722855631,2.14186054381067,2.66748750436756,NA
+"fixed-split","materna","LASSO","Disk.write.throughput..KB.s.",1.55771584950829,0.19398027114948,1.48006416785559,NA
+"fixed-split","materna","LASSO","Network.received.throughput..KB.s.",0.453248025287404,0.204206476935436,0.693173543098474,NA
+"fixed-split","materna","LASSO","Network.transmitted.throughput..KB.s.",0.360760189105009,0.18858992094868,1.13783932942802,NA
+"fixed-split","materna","LASSO","MEAN",1.0391474839886,0.548962466704376,1.39691421471853,4.6
+"fixed-split","materna","ARMAr-LASSO","CPU.usage..MHZ.",0.0544292045061886,0.0161057563123895,1.00169243402585,NA
+"fixed-split","materna","ARMAr-LASSO","Memory.usage..KB.",2.2876027083452,1.78332387192285,2.22096352553898,NA
+"fixed-split","materna","ARMAr-LASSO","Disk.write.throughput..KB.s.",1.5615754174948,0.198864934197826,1.51733401342836,NA
+"fixed-split","materna","ARMAr-LASSO","Network.received.throughput..KB.s.",0.456812229666913,0.203215967223973,0.689811283798611,NA
+"fixed-split","materna","ARMAr-LASSO","Network.transmitted.throughput..KB.s.",0.336856133537154,0.149167310383157,0.899986762628421,NA
+"fixed-split","materna","ARMAr-LASSO","MEAN",0.939455138710052,0.470135568008039,1.26595760388404,4.8

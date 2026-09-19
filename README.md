@@ -1,52 +1,19 @@
 # Reproducibility
 
-This folder contains the scripts needed to reproduce the forecasting experiments
-reported in Tables 1, 2, and 3.
-
-The main entry point is:
+This folder reproduces the forecasting experiments through a single Python
+interface:
 
 ```bash
-python reproduce.py ...
+python reproduce.py run --setting SETTING --method METHOD [options]
 ```
 
-Python is the user-facing interface. R is used internally for ARMAr-LASSO,
-LASSO, ARMA, and the rolling-window metric post-processing.
-
-## Folder Layout
-
-```text
-reproducibility/
-  reproduce.py                 # main command-line interface
-  requirements.txt             # minimal Python requirements
-  run_reproducibility.slurm     # SLURM wrapper for HPC execution
-  python/
-    dataset_config.py           # dataset paths and selected variables
-    table1_ml_metrics.py        # Darts and Random Forest backend
-  r/
-    table1_lasso_metrics.R      # LASSO and ARMAr-LASSO backend
-    rolling_metrics.R           # Table 2 and Table 3 metric computation
-  results/
-    *.csv                       # generated outputs
-```
-
-The scripts assume that the original datasets are available in:
-
-```text
-../datasets/
-```
-
-and that the rolling-window forecast objects used for Tables 2 and 3 are
-available in:
-
-```text
-../results/
-```
+The interface uses experiment names rather than paper table numbers. R is
+called internally for ARMAr-LASSO, LASSO, ARMA, and rolling-window metric
+post-processing.
 
 ## Installation
 
-### Python
-
-Create and activate a Python environment, then install the minimal requirements:
+Create a Python environment and install the dependencies:
 
 ```bash
 cd reproducibility
@@ -56,12 +23,6 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-The deep-learning methods use Darts/PyTorch. To reproduce the paper setting,
-these methods are expected to run with a CUDA GPU. LASSO, ARMAr-LASSO, ARMA, and
-Random Forest do not require a GPU.
-
-### R
-
 Install the required R packages:
 
 ```r
@@ -70,35 +31,32 @@ install.packages(c("forecast", "glmnet", "matrixStats", "remotes"),
 remotes::install_github("gabrielrvsc/HDeconometrics")
 ```
 
-If `Rscript` is not available as `Rscript` on your machine, pass its path with
-`--rscript`, for example:
+The deep-learning methods use Darts/PyTorch and require a CUDA GPU to reproduce
+the paper environment. LASSO, ARMAr-LASSO, ARMA, and Random Forest do not
+require a GPU.
+
+If `Rscript` is not on `PATH`, provide it before the `run` command:
 
 ```bash
-python reproduce.py --rscript /path/to/Rscript table1 --dataset exathlon1 --method lasso
+python reproduce.py --rscript /path/to/Rscript run \
+  --setting fixed-split --dataset exathlon1 --method lasso
 ```
 
-## Metrics
+## Experimental Settings
 
-Each output reports:
+### `fixed-split`
+
+The model is fitted on a fixed training set and evaluated on a separate test
+set. This is the experiment reported in Table 1 of the paper.
+
+Required options:
 
 ```text
-RMSE, MAE, MASE
+--dataset DATASET
+--method METHOD
 ```
 
-For all tables, `RMSE` is computed variable by variable and then averaged across
-variables. This is the convention used in the paper tables.
-
-For LASSO-family methods, the output also reports:
-
-```text
-AVG_SELECTED_VARIABLES
-```
-
-This is the average number of selected regressors. It is reported for Table 1
-and Table 2. It is `NA` for ARMA because ARMA is univariate and does not perform
-variable selection.
-
-## Available Datasets
+Available datasets:
 
 ```text
 exathlon1
@@ -111,214 +69,193 @@ kubernetes
 
 `kubernetes` is an alias for `pod_metrics`.
 
-## Available Methods
-
-For Table 1:
+Available methods:
 
 ```text
-lasso
 armar-lasso
+lasso
 tide
 transformer
 dlinear
 nhits
 random-forest
 naive
-all
 ```
 
-`lasso` and `armar-lasso` use the legacy R code path from the original
-experiments. The Darts and Random Forest methods use the Python backend.
-
-## Run Locally
-
-All commands below can be run directly on a local machine without SLURM.
-
-### Single Dataset And Method
-
-Run ARMAr-LASSO on Exathlon Data 1:
+Example:
 
 ```bash
-cd reproducibility
-python reproduce.py table1 --dataset exathlon1 --method armar-lasso
+python reproduce.py run \
+  --setting fixed-split \
+  --dataset exathlon1 \
+  --method armar-lasso
 ```
 
-Run LASSO on Kubernetes:
+The terminal prints only the requested method's `MEAN` row. The CSV also
+contains the metrics for each variable.
 
-```bash
-cd reproducibility
-python reproduce.py table1 --dataset pod_metrics --method lasso
-```
+### `rolling-observed-regressors`
 
-Run DLinear on Materna:
+A window of 200 observations moves through the Kubernetes data. At each shift,
+the predictors available from the observed series are used. This is the
+experiment reported in Table 2 of the paper.
 
-```bash
-cd reproducibility
-python reproduce.py table1 --dataset materna --method dlinear
-```
-
-Run all Table 1 methods on one dataset:
-
-```bash
-cd reproducibility
-python reproduce.py table1 --dataset exathlon1 --method all
-```
-
-Outputs:
+Available methods:
 
 ```text
-results/table1_<dataset>_lasso_metrics.csv
-results/table1_<dataset>_ml_metrics.csv
+armar-lasso
+lasso
+arma
 ```
 
-Each file contains one row per variable plus a final `MEAN` row. The `MEAN` row
-is the row used in the paper tables.
-
-### Full Table 1
-
-Run all Table 1 methods on all datasets:
+One horizon from 1 to 4 must be specified:
 
 ```bash
-cd reproducibility
-python reproduce.py table1-all
+python reproduce.py run \
+  --setting rolling-observed-regressors \
+  --method armar-lasso \
+  --horizon 2
 ```
 
-This generates:
+This setting reads the corresponding saved forecast object from
+`../results/rolling_pod_original_style_forecasts_h<h>.rds`.
+
+### `rolling-predicted-regressors`
+
+The rolling multi-step forecast reuses predicted regressors, allowing forecast
+errors to propagate across the horizon. This is the experiment reported in
+Table 3 of the paper.
+
+Available methods:
 
 ```text
-results/table1_exathlon1_lasso_metrics.csv
-results/table1_exathlon1_ml_metrics.csv
-results/table1_exathlon2_lasso_metrics.csv
-results/table1_exathlon2_ml_metrics.csv
-results/table1_exathlon3_lasso_metrics.csv
-results/table1_exathlon3_ml_metrics.csv
-results/table1_materna_lasso_metrics.csv
-results/table1_materna_ml_metrics.csv
-results/table1_pod_metrics_lasso_metrics.csv
-results/table1_pod_metrics_ml_metrics.csv
+armar-lasso
+lasso
 ```
 
-### Table 2
-
-Table 2 is the rolling-window direct forecasting setting on Kubernetes with
-window size 200 and horizons `h = 1, 2, 3, 4`.
-
-It expects these forecast files to already exist in `../results/`:
-
-```text
-rolling_pod_original_style_forecasts_h1.rds
-rolling_pod_original_style_forecasts_h2.rds
-rolling_pod_original_style_forecasts_h3.rds
-rolling_pod_original_style_forecasts_h4.rds
-```
-
-Compute Table 2 metrics:
+Example:
 
 ```bash
-cd reproducibility
-python reproduce.py rolling-metrics --setting table2
+python reproduce.py run \
+  --setting rolling-predicted-regressors \
+  --method lasso \
+  --horizon 3
 ```
 
-Output:
+This setting reads `../results/rollingLASSO_forecasts.rds`.
+
+For both rolling settings, a single `run` command prints and saves exactly one
+row: the selected method at the selected horizon.
+
+## Metrics And Outputs
+
+Every result reports:
 
 ```text
-results/table2_rolling_metrics.csv
+RMSE, MAE, MASE
 ```
 
-### Table 3
+`RMSE` is calculated separately for every variable and then averaged across
+variables. LASSO-family methods also report `AVG_SELECTED_VARIABLES` when
+that information is available. The value is `NA` for ARMA.
 
-Table 3 is the rolling-window setting with predicted regressors on Kubernetes.
-
-It expects this forecast file to already exist in `../results/`:
+New outputs use setting-based names:
 
 ```text
-rollingLASSO_forecasts.rds
+results/fixed_split_<dataset>_<method>_metrics.csv
+results/rolling_observed_regressors_<method>_metrics.csv
+results/rolling_predicted_regressors_<method>_metrics.csv
 ```
 
-Compute Table 3 metrics:
+Hyphens in method names are written as underscores in filenames.
+
+## Run Complete Experiments
+
+Run all fixed-split methods on all datasets:
 
 ```bash
-cd reproducibility
-python reproduce.py rolling-metrics --setting table3
+python reproduce.py run-all --setting fixed-split
 ```
 
-Output:
-
-```text
-results/table3_rolling_metrics.csv
-```
-
-### Only Some Horizons
-
-For Tables 2 and 3, a subset of horizons can be selected:
+Limit the datasets when needed:
 
 ```bash
-cd reproducibility
-python reproduce.py rolling-metrics --setting table2 --horizons 1,2
-python reproduce.py rolling-metrics --setting table3 --horizons 2,3,4
+python reproduce.py run-all --setting fixed-split \
+  --datasets exathlon1 materna pod_metrics
 ```
+
+Compute all methods and horizons for the rolling setting with observed
+regressors:
+
+```bash
+python reproduce.py run-all --setting rolling-observed-regressors
+```
+
+Compute all methods and horizons for the rolling setting with predicted
+regressors:
+
+```bash
+python reproduce.py run-all --setting rolling-predicted-regressors
+```
+
+A subset of rolling horizons can be selected with, for example,
+`--horizons 2,3,4`.
 
 ## Run On SLURM
 
-The provided SLURM wrapper runs the same Python interface on the cluster.
+The same interface can be passed to the provided SLURM wrapper.
 
-Submit one method/dataset:
-
-```bash
-cd /srv/hpc/home/g.squillace/Tonini/reproducibility
-sbatch --export=ALL,CMD="table1 --dataset exathlon1 --method armar-lasso" run_reproducibility.slurm
-```
-
-Submit all Table 1 experiments:
+One fixed-split method:
 
 ```bash
 cd /srv/hpc/home/g.squillace/Tonini/reproducibility
-sbatch --export=ALL,CMD="table1-all" run_reproducibility.slurm
+sbatch --export=ALL,CMD="run --setting fixed-split --dataset exathlon1 --method armar-lasso" run_reproducibility.slurm
 ```
 
-Submit Table 2 metric computation:
+One rolling method and horizon:
 
 ```bash
-cd /srv/hpc/home/g.squillace/Tonini/reproducibility
-sbatch --export=ALL,CMD="rolling-metrics --setting table2" run_reproducibility.slurm
+sbatch --export=ALL,CMD="run --setting rolling-observed-regressors --method lasso --horizon 2" run_reproducibility.slurm
 ```
 
-Submit Table 3 metric computation:
+A complete setting:
 
 ```bash
-cd /srv/hpc/home/g.squillace/Tonini/reproducibility
-sbatch --export=ALL,CMD="rolling-metrics --setting table3" run_reproducibility.slurm
+sbatch --export=ALL,CMD="run-all --setting rolling-predicted-regressors" run_reproducibility.slurm
 ```
 
-SLURM logs are written to:
-
-```text
-slurm_repro_<jobid>.out
-slurm_repro_<jobid>.err
-```
-
-## Cluster Environment Used In The Experiments
-
-On the original HPC system, the working environment is:
-
-```bash
-/srv/hpc/home/g.squillace/miniforge3/envs/tonini-forecast/bin/python
-/srv/hpc/home/g.squillace/miniforge3/envs/tonini-forecast/bin/Rscript
-```
-
-The SLURM wrapper uses the GPU partition and requests one GPU:
-
-```text
-#SBATCH -p gpu_l40s
-#SBATCH --gres=gpu:1
-```
+SLURM logs are written to `slurm_repro_<jobid>.out` and
+`slurm_repro_<jobid>.err`. The wrapper requests one GPU from the
+`gpu_l40s` partition.
 
 ## Dry Run
 
-To print the backend command without executing it:
+Use `--dry-run` before `run` or `run-all` to inspect the backend command
+without executing an experiment:
 
 ```bash
-cd reproducibility
-python reproduce.py --dry-run table1 --dataset exathlon1 --method armar-lasso
-python reproduce.py --dry-run rolling-metrics --setting table2
+python reproduce.py --dry-run run \
+  --setting rolling-predicted-regressors \
+  --method armar-lasso \
+  --horizon 4
 ```
+
+## Folder Layout
+
+```text
+reproducibility/
+  reproduce.py
+  requirements.txt
+  run_reproducibility.slurm
+  python/
+    dataset_config.py
+    table1_ml_metrics.py
+  r/
+    table1_lasso_metrics.R
+    rolling_metrics.R
+  results/
+    *.csv
+```
+
+The original datasets must be available in `../datasets/`. Saved rolling
+forecast objects must be available in `../results/`.

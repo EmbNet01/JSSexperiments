@@ -2,7 +2,7 @@
 
 parse_args <- function() {
   args <- commandArgs(trailingOnly = TRUE)
-  out <- list(setting = "table3", project_root = getwd(),
+  out <- list(setting = "rolling-predicted-regressors", method = "all", project_root = getwd(),
               source_results_dir = file.path(getwd(), "results"),
               results_dir = file.path(dirname(getwd()), "results"),
               horizons = "1,2,3,4")
@@ -47,7 +47,7 @@ mase_denominator <- function(n_windows, h = 1) {
 metric_row <- function(setting, h, method, errors, mase_den, avg_selected = NA_real_) {
   rmse_by_variable <- sqrt(colMeans(errors^2, na.rm = TRUE))
   data.frame(
-    Table = setting,
+    Setting = setting,
     Horizon = paste0("h=", h),
     Method = method,
     RMSE = mean(rmse_by_variable, na.rm = TRUE),
@@ -62,9 +62,9 @@ rows <- list()
 setting <- tolower(args$setting)
 
 for (h in args$horizons) {
-  if (setting == "table2") {
+  if (setting == "rolling-observed-regressors") {
     rds_path <- file.path(args$source_results_dir, paste0("rolling_pod_original_style_forecasts_h", h, ".rds"))
-    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate Table 2 rolling forecasts first.")
+    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate the rolling forecasts with observed regressors first.")
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, h)
@@ -73,9 +73,9 @@ for (h in args$horizons) {
       list("LASSO", "^X[0-9]+ lasso er$", "lasso positives"),
       list("ARMA", "^X[0-9]+ ARIMA er$", NA)
     )
-  } else if (setting == "table3") {
+  } else if (setting == "rolling-predicted-regressors") {
     rds_path <- file.path(args$source_results_dir, "rollingLASSO_forecasts.rds")
-    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate Table 3 rolling forecasts first.")
+    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate the rolling forecasts with predicted regressors first.")
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, 1)
@@ -85,6 +85,16 @@ for (h in args$horizons) {
     )
   } else {
     stop("Unsupported setting: ", args$setting)
+  }
+
+  requested_method <- tolower(args$method)
+  if (requested_method != "all") {
+    method_keys <- vapply(specs, function(spec) tolower(spec[[1]]), character(1))
+    keep <- method_keys == requested_method
+    if (!any(keep)) {
+      stop("Method ", args$method, " is not available for setting ", args$setting)
+    }
+    specs <- specs[keep]
   }
 
   for (spec in specs) {
@@ -98,7 +108,8 @@ for (h in args$horizons) {
 
 out <- do.call(rbind, rows)
 dir.create(args$results_dir, recursive = TRUE, showWarnings = FALSE)
-out_path <- file.path(args$results_dir, paste0(setting, "_rolling_metrics.csv"))
+method_slug <- if (tolower(args$method) == "all") "all_methods" else gsub("-", "_", tolower(args$method))
+out_path <- file.path(args$results_dir, paste0(gsub("-", "_", setting), "_", method_slug, "_metrics.csv"))
 write.csv(out, out_path, row.names = FALSE)
 print(out, row.names = FALSE)
 cat("Wrote", out_path, "\n")

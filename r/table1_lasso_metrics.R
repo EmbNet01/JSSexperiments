@@ -71,12 +71,12 @@ metrics_from_predictions <- function(dataset, method, features, y_true, y_pred, 
   scale <- colMeans(abs(diff(train_for_mase)), na.rm = TRUE)
   mase <- mae / scale
   mase[scale == 0] <- NA_real_
-  out <- data.frame(Table = "Table1", Dataset = dataset, Method = method,
+  out <- data.frame(Setting = "fixed-split", Dataset = dataset, Method = method,
                     Variable = features, RMSE = as.numeric(rmse),
                     MAE = as.numeric(mae), MASE = as.numeric(mase),
                     AVG_SELECTED_VARIABLES = NA_real_,
                     stringsAsFactors = FALSE)
-  out[nrow(out) + 1, ] <- list("Table1", dataset, method, "MEAN",
+  out[nrow(out) + 1, ] <- list("fixed-split", dataset, method, "MEAN",
                                mean(rmse, na.rm = TRUE), mean(mae, na.rm = TRUE),
                                mean(mase, na.rm = TRUE), avg_selected)
   out
@@ -194,7 +194,8 @@ if (length(rows) == 0) stop("No LASSO-family method selected.")
 
 out <- do.call(rbind, rows)
 dir.create(args$results_dir, recursive = TRUE, showWarnings = FALSE)
-out_path <- file.path(args$results_dir, paste0("table1_", obj$dataset, "_lasso_metrics.csv"))
+method_slug <- if (args$method == "all") "lasso_family" else gsub("-", "_", args$method)
+out_path <- file.path(args$results_dir, paste0("fixed_split_", obj$dataset, "_", method_slug, "_metrics.csv"))
 write.csv(out, out_path, row.names = FALSE)
 print(out[out$Variable == "MEAN", ], row.names = FALSE)
 cat("Wrote", out_path, "\n")

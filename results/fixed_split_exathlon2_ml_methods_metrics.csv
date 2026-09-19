@@ -1,0 +1,61 @@
+"Setting","Dataset","Method","Variable","RMSE","MAE","MASE","AVG_SELECTED_VARIABLES"
+"fixed-split","exathlon2","TiDE","X1_jvm_pools_PS.Eden.Space_max_value",0.585249976553497,0.434620773062684,14.0832701640045,NA
+"fixed-split","exathlon2","TiDE","X1_jvm_pools_PS.Survivor.Space_committed_value",1.65041249059797,1.32268749811869,24.9134521812193,NA
+"fixed-split","exathlon2","TiDE","X2_jvm_heap_committed_value",0.780575804990625,0.638163934570239,29.6759561335285,NA
+"fixed-split","exathlon2","TiDE","driver_BlockManager_memory_memUsed_MB_value",0.320836115186307,0.241132361878128,6.52155790296307,NA
+"fixed-split","exathlon2","TiDE","driver_BlockManager_memory_remainingMem_MB_value",0.283402752393775,0.210683116327529,5.68708016586752,NA
+"fixed-split","exathlon2","TiDE","driver_DAGScheduler_stage_waitingStages_value",2.17138857286571,1.49303523456973,8.68605454063398,NA
+"fixed-split","exathlon2","TiDE","node5_NET_ib0.write.KB.s",1.41823173321957,1.1566697325435,3.588539056305,NA
+"fixed-split","exathlon2","TiDE","node6_CPU031_User.",2.75707819927247,1.91023916841659,2.8273528926378,NA
+"fixed-split","exathlon2","TiDE","node6_NETPACKET_em1.write.s",2.84328169972652,2.23724955857661,2.43676129253148,NA
+"fixed-split","exathlon2","TiDE","node6_NET_ib0.write.KB.s",2.14308518170606,1.67662230031016,3.56417773754666,NA
+"fixed-split","exathlon2","TiDE","node7_NET_ib0.read.KB.s",2.98747482872488,2.34074989878929,5.27120967346528,NA
+"fixed-split","exathlon2","TiDE","MEAN",1.63100157774885,1.24198668883301,9.75049197642755,NA
+"fixed-split","exathlon2","Transformer","X1_jvm_pools_PS.Eden.Space_max_value",0.851885589359944,0.617983349871323,20.0248745861006,NA
+"fixed-split","exathlon2","Transformer","X1_jvm_pools_PS.Survivor.Space_committed_value",1.06960627137721,0.831929966036512,15.6697991448878,NA
+"fixed-split","exathlon2","Transformer","X2_jvm_heap_committed_value",3.35212475292684,3.02212119843735,140.534949182657,NA
+"fixed-split","exathlon2","Transformer","driver_BlockManager_memory_memUsed_MB_value",0.710366909954571,0.562794525834551,15.2210887792643,NA
+"fixed-split","exathlon2","Transformer","driver_BlockManager_memory_remainingMem_MB_value",0.714248217663658,0.565023134379693,15.2519666350083,NA
+"fixed-split","exathlon2","Transformer","driver_DAGScheduler_stage_waitingStages_value",3.16011707121744,2.70014323606421,15.708665725318,NA
+"fixed-split","exathlon2","Transformer","node5_NET_ib0.write.KB.s",2.16880336697266,1.8081067473554,5.60960618082864,NA
+"fixed-split","exathlon2","Transformer","node6_CPU031_User.",2.84341451369083,1.99723723953433,2.95611909746467,NA
+"fixed-split","exathlon2","Transformer","node6_NETPACKET_em1.write.s",3.70809564076593,2.87915582257793,3.13591098352397,NA
+"fixed-split","exathlon2","Transformer","node6_NET_ib0.write.KB.s",2.46257794987909,1.86526355700788,3.96519290201182,NA
+"fixed-split","exathlon2","Transformer","node7_NET_ib0.read.KB.s",2.77200571845946,2.26784251019272,5.10702718979366,NA
+"fixed-split","exathlon2","Transformer","MEAN",2.16484054566069,1.73796375339017,22.1077454915327,NA
+"fixed-split","exathlon2","DLinear","X1_jvm_pools_PS.Eden.Space_max_value",0.720434490880905,0.570758409426704,18.4946173227998,NA
+"fixed-split","exathlon2","DLinear","X1_jvm_pools_PS.Survivor.Space_committed_value",1.11016918007195,0.892063805131779,16.8024487895725,NA
+"fixed-split","exathlon2","DLinear","X2_jvm_heap_committed_value",0.836350836797837,0.695611505974699,32.3473882164533,NA
+"fixed-split","exathlon2","DLinear","driver_BlockManager_memory_memUsed_MB_value",0.240487224176191,0.17186571788975,4.64820326074195,NA
+"fixed-split","exathlon2","DLinear","driver_BlockManager_memory_remainingMem_MB_value",0.251033045410844,0.197241549011949,5.32424486984992,NA
+"fixed-split","exathlon2","DLinear","driver_DAGScheduler_stage_waitingStages_value",2.21256821123316,1.54711825282178,9.00069416559554,NA
+"fixed-split","exathlon2","DLinear","node5_NET_ib0.write.KB.s",1.37610829251993,1.09685790114099,3.40297433806423,NA
+"fixed-split","exathlon2","DLinear","node6_CPU031_User.",5.23726141408585,4.1938159379162,6.20728431251179,NA
+"fixed-split","exathlon2","DLinear","node6_NETPACKET_em1.write.s",6.90698332539441,5.37472781622814,5.85403119212573,NA
+"fixed-split","exathlon2","DLinear","node6_NET_ib0.write.KB.s",2.93155353180426,2.25554893131011,4.79486482163305,NA
+"fixed-split","exathlon2","DLinear","node7_NET_ib0.read.KB.s",2.99227822382624,2.37379761117404,5.34563087553326,NA
+"fixed-split","exathlon2","DLinear","MEAN",2.25592979783651,1.76085522163874,10.2020347422619,NA
+"fixed-split","exathlon2","NHITS","X1_jvm_pools_PS.Eden.Space_max_value",0.868573605982506,0.713847990607954,23.1312324004209,NA
+"fixed-split","exathlon2","NHITS","X1_jvm_pools_PS.Survivor.Space_committed_value",1.04762961390701,0.870005650114649,16.3869728808587,NA
+"fixed-split","exathlon2","NHITS","X2_jvm_heap_committed_value",2.41282501808083,2.10189272134982,97.7424025664596,NA
+"fixed-split","exathlon2","NHITS","driver_BlockManager_memory_memUsed_MB_value",0.500052858070617,0.357156214205229,9.65948706843299,NA
+"fixed-split","exathlon2","NHITS","driver_BlockManager_memory_remainingMem_MB_value",0.49609481582605,0.349734290712236,9.44056164871438,NA
+"fixed-split","exathlon2","NHITS","driver_DAGScheduler_stage_waitingStages_value",2.07625940292194,1.42662102241891,8.2996755351971,NA
+"fixed-split","exathlon2","NHITS","node5_NET_ib0.write.KB.s",2.49418089382848,2.05517120330443,6.37611750610401,NA
+"fixed-split","exathlon2","NHITS","node6_CPU031_User.",3.14039163741045,2.2927480489539,3.39350586852053,NA
+"fixed-split","exathlon2","NHITS","node6_NETPACKET_em1.write.s",4.19663012178616,3.1266675791186,3.40549515462042,NA
+"fixed-split","exathlon2","NHITS","node6_NET_ib0.write.KB.s",1.90121180532473,1.46574469649808,3.11589236002593,NA
+"fixed-split","exathlon2","NHITS","node7_NET_ib0.read.KB.s",2.49335490836578,1.97846403042765,4.45536652215066,NA
+"fixed-split","exathlon2","NHITS","MEAN",1.96610951650041,1.52164122251922,16.8551554101368,NA
+"fixed-split","exathlon2","Random Forest","X1_jvm_pools_PS.Eden.Space_max_value",0.801412724497388,0.589796122146703,19.1115074213818,NA
+"fixed-split","exathlon2","Random Forest","X1_jvm_pools_PS.Survivor.Space_committed_value",0.986749603116815,0.724523563062669,13.6467481307581,NA
+"fixed-split","exathlon2","Random Forest","X2_jvm_heap_committed_value",4.8997307860476,4.35409744289328,202.474627155835,NA
+"fixed-split","exathlon2","Random Forest","driver_BlockManager_memory_memUsed_MB_value",0.512564106534624,0.396824479996559,10.7323372253068,NA
+"fixed-split","exathlon2","Random Forest","driver_BlockManager_memory_remainingMem_MB_value",0.512603889702966,0.397029716543193,10.7172319527616,NA
+"fixed-split","exathlon2","Random Forest","driver_DAGScheduler_stage_waitingStages_value",2.4644496081761,2.16588742812156,12.6005173179714,NA
+"fixed-split","exathlon2","Random Forest","node5_NET_ib0.write.KB.s",1.92025719908335,1.62995940922271,5.05690849826704,NA
+"fixed-split","exathlon2","Random Forest","node6_CPU031_User.",3.11696333250749,2.23625080063149,3.30988405764391,NA
+"fixed-split","exathlon2","Random Forest","node6_NETPACKET_em1.write.s",3.56186285739109,2.66300131841078,2.90048041792539,NA
+"fixed-split","exathlon2","Random Forest","node6_NET_ib0.write.KB.s",1.97314110549819,1.52584192786106,3.24364755812421,NA
+"fixed-split","exathlon2","Random Forest","node7_NET_ib0.read.KB.s",2.10425487396301,1.70356606332375,3.83631498479356,NA
+"fixed-split","exathlon2","Random Forest","MEAN",2.07763546241079,1.67152529747398,26.1482004291608,NA
