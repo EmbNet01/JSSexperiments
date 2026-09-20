@@ -99,14 +99,27 @@ def run_rolling(args, method, horizons):
         else [parsed_horizons[0]]
     )
     for horizon in generation_horizons:
-        execute([
-            args.rscript,
-            str(ROOT / "r" / "rolling_forecasts.R"),
-            "--setting", args.setting,
-            "--horizon", str(horizon),
-            "--project-root", str(args.project_root),
-            "--results-dir", str(args.results_dir),
-        ], args.dry_run)
+        method_slug = method.replace("-", "_")
+        if args.setting == "rolling-observed-regressors":
+            forecast_path = (
+                args.results_dir /
+                f"rolling_observed_{method_slug}_forecasts_h{horizon}.rds"
+            )
+        else:
+            forecast_path = args.results_dir / f"rolling_predicted_{method_slug}_forecasts.rds"
+
+        if args.reuse_forecasts and forecast_path.exists():
+            print(f"Reusing {forecast_path}")
+        else:
+            execute([
+                args.rscript,
+                str(ROOT / "r" / "rolling_forecasts.R"),
+                "--setting", args.setting,
+                "--method", method,
+                "--horizon", str(horizon),
+                "--project-root", str(args.project_root),
+                "--results-dir", str(args.results_dir),
+            ], args.dry_run)
 
     execute([
         args.rscript,
@@ -145,6 +158,11 @@ def add_shared_experiment_options(parser):
     parser.add_argument("--setting", required=True, choices=SETTINGS)
     parser.add_argument("--lags", type=int, default=5)
     parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument(
+        "--reuse-forecasts",
+        action="store_true",
+        help="Reuse matching rolling forecasts already present in results/.",
+    )
 
 
 def main():

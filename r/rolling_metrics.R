@@ -60,10 +60,14 @@ metric_row <- function(setting, h, method, errors, mase_den, avg_selected = NA_r
 
 rows <- list()
 setting <- tolower(args$setting)
+method_slug <- gsub("-", "_", tolower(args$method))
 
 for (h in args$horizons) {
   if (setting == "rolling-observed-regressors") {
-    rds_path <- file.path(args$source_results_dir, paste0("rolling_observed_forecasts_h", h, ".rds"))
+    rds_path <- file.path(
+      args$source_results_dir,
+      paste0("rolling_observed_", method_slug, "_forecasts_h", h, ".rds")
+    )
     if (!file.exists(rds_path)) stop("Forecast generation did not create ", rds_path)
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
@@ -74,7 +78,10 @@ for (h in args$horizons) {
       list("ARMA", "^X[0-9]+ ARIMA er$", NA)
     )
   } else if (setting == "rolling-predicted-regressors") {
-    rds_path <- file.path(args$source_results_dir, "rolling_predicted_forecasts.rds")
+    rds_path <- file.path(
+      args$source_results_dir,
+      paste0("rolling_predicted_", method_slug, "_forecasts.rds")
+    )
     if (!file.exists(rds_path)) stop("Forecast generation did not create ", rds_path)
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
@@ -108,8 +115,8 @@ for (h in args$horizons) {
 
 out <- do.call(rbind, rows)
 dir.create(args$results_dir, recursive = TRUE, showWarnings = FALSE)
-method_slug <- if (tolower(args$method) == "all") "all_methods" else gsub("-", "_", tolower(args$method))
-out_path <- file.path(args$results_dir, paste0(gsub("-", "_", setting), "_", method_slug, "_metrics.csv"))
+output_method_slug <- if (tolower(args$method) == "all") "all_methods" else method_slug
+out_path <- file.path(args$results_dir, paste0(gsub("-", "_", setting), "_", output_method_slug, "_metrics.csv"))
 write.csv(out, out_path, row.names = FALSE)
 print(out, row.names = FALSE)
 cat("Wrote", out_path, "\n")
