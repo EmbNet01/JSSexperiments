@@ -109,7 +109,20 @@ for (h in args$horizons) {
     if (!is.na(spec[[3]]) && spec[[3]] %in% colnames(forecasts)) {
       avg_selected <- mean(safe_num(forecasts[, spec[[3]]]), na.rm = TRUE)
     }
-    rows[[length(rows) + 1]] <- metric_row(setting, h, spec[[1]], get_errors(forecasts, spec[[2]]), mase_den, avg_selected)
+    errors <- get_errors(forecasts, spec[[2]])
+    expected_missing <- if (setting == "rolling-predicted-regressors") h - 1 else 0
+    missing_by_variable <- colSums(!is.finite(errors))
+    if (any(missing_by_variable != expected_missing)) {
+      stop(
+        "Incomplete forecasts for ", spec[[1]], " at h=", h,
+        ": expected ", expected_missing,
+        " unavailable trailing values per variable, found range ",
+        min(missing_by_variable), "-", max(missing_by_variable)
+      )
+    }
+    rows[[length(rows) + 1]] <- metric_row(
+      setting, h, spec[[1]], errors, mase_den, avg_selected
+    )
   }
 }
 

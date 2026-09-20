@@ -106,8 +106,13 @@ direct_predictions <- function(coefficients, X_in_scale, exogenous_scale) {
 
 recursive_predictions <- function(coefficients, X_in) {
   predictions <- matrix(NA_real_, nrow = 4, ncol = n_variables)
+  selected_by_target <- vector("list", n_variables)
+  ols_by_target <- vector("list", n_variables)
+
+  # Complete horizon 1 for every variable before recursively using predictions.
   for (target in seq_len(n_variables)) {
     selected <- which(coefficients[target, 2:n_variables] != 0)
+    selected_by_target[[target]] <- selected
     selected_names <- colnames(X_in[, -target, drop = FALSE])[selected]
     regressors <- cbind(
       X_in[1:(nrow(X_in) - 1), selected_names, drop = FALSE],
@@ -115,6 +120,7 @@ recursive_predictions <- function(coefficients, X_in) {
     )
     colnames(regressors)[ncol(regressors)] <- "y_1"
     ols_coefficients <- coef(lm(X_in[2:nrow(X_in), target] ~ regressors))
+    ols_by_target[[target]] <- ols_coefficients
 
     first_inputs <- c(
       X_in[nrow(X_in), selected_names, drop = FALSE],
@@ -122,8 +128,12 @@ recursive_predictions <- function(coefficients, X_in) {
     )
     predictions[1, target] <- ols_coefficients[1] +
       ols_coefficients[-1] %*% first_inputs
+  }
 
-    for (step in 2:4) {
+  for (step in 2:4) {
+    for (target in seq_len(n_variables)) {
+      selected <- selected_by_target[[target]]
+      ols_coefficients <- ols_by_target[[target]]
       previous <- predictions[step - 1, ]
       recursive_inputs <- c(previous[selected], previous[target])
       predictions[step, target] <- ols_coefficients[1] +
