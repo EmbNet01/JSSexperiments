@@ -87,8 +87,8 @@ for (h in args$horizons) {
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, 1)
     specs <- list(
-      list("ARMAr-LASSO", paste0("^X[0-9]+ ARMAr_lasso h", h, " er$"), NA),
-      list("LASSO", paste0("^X[0-9]+ lasso h", h, " er$"), NA)
+      list("ARMAr-LASSO", paste0("^X[0-9]+ ARMAr_lasso h", h, " er$"), "ARMAr_lasso positives"),
+      list("LASSO", paste0("^X[0-9]+ lasso h", h, " er$"), "lasso positives")
     )
   } else {
     stop("Unsupported setting: ", args$setting)
