@@ -4,7 +4,7 @@ parse_args <- function() {
   args <- commandArgs(trailingOnly = TRUE)
   out <- list(setting = "rolling-predicted-regressors", method = "all", project_root = getwd(),
               source_results_dir = file.path(getwd(), "results"),
-              results_dir = file.path(dirname(getwd()), "results"),
+              results_dir = file.path(getwd(), "results"),
               horizons = "1,2,3,4")
   i <- 1
   while (i <= length(args)) {
@@ -63,8 +63,8 @@ setting <- tolower(args$setting)
 
 for (h in args$horizons) {
   if (setting == "rolling-observed-regressors") {
-    rds_path <- file.path(args$source_results_dir, paste0("rolling_pod_original_style_forecasts_h", h, ".rds"))
-    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate the rolling forecasts with observed regressors first.")
+    rds_path <- file.path(args$source_results_dir, paste0("rolling_observed_forecasts_h", h, ".rds"))
+    if (!file.exists(rds_path)) stop("Forecast generation did not create ", rds_path)
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, h)
@@ -74,8 +74,8 @@ for (h in args$horizons) {
       list("ARMA", "^X[0-9]+ ARIMA er$", NA)
     )
   } else if (setting == "rolling-predicted-regressors") {
-    rds_path <- file.path(args$source_results_dir, "rollingLASSO_forecasts.rds")
-    if (!file.exists(rds_path)) stop("Missing ", rds_path, ". Generate the rolling forecasts with predicted regressors first.")
+    rds_path <- file.path(args$source_results_dir, "rolling_predicted_forecasts.rds")
+    if (!file.exists(rds_path)) stop("Forecast generation did not create ", rds_path)
     forecasts <- readRDS(rds_path)
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, 1)

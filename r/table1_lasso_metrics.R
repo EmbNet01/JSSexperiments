@@ -3,7 +3,7 @@
 parse_args <- function() {
   cli <- commandArgs(trailingOnly = TRUE)
   out <- list(dataset = "exathlon1", method = "all", project_root = getwd(),
-              results_dir = file.path(dirname(getwd()), "results"), lags = 5)
+              results_dir = file.path(getwd(), "results"), lags = 5)
   i <- 1
   while (i <= length(cli)) {
     key <- gsub("-", "_", sub("^--", "", cli[i]))

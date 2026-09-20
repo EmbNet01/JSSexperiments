@@ -82,15 +82,41 @@ def run_rolling(args, method, horizons):
             f"Method {method!r} is not available for {args.setting}. "
             f"Choose: {', '.join(sorted(valid))}"
         )
+
+    parsed_horizons = []
+    for value in horizons.split(","):
+        try:
+            horizon = int(value)
+        except ValueError as exc:
+            raise SystemExit(f"Invalid horizon {value!r}; expected integers from 1 to 4.") from exc
+        if horizon not in range(1, 5):
+            raise SystemExit(f"Invalid horizon {horizon}; expected integers from 1 to 4.")
+        if horizon not in parsed_horizons:
+            parsed_horizons.append(horizon)
+
+    generation_horizons = (
+        parsed_horizons if args.setting == "rolling-observed-regressors"
+        else [parsed_horizons[0]]
+    )
+    for horizon in generation_horizons:
+        execute([
+            args.rscript,
+            str(ROOT / "r" / "rolling_forecasts.R"),
+            "--setting", args.setting,
+            "--horizon", str(horizon),
+            "--project-root", str(args.project_root),
+            "--results-dir", str(args.results_dir),
+        ], args.dry_run)
+
     execute([
         args.rscript,
         str(ROOT / "r" / "rolling_metrics.R"),
         "--setting", args.setting,
         "--method", method,
         "--project-root", str(args.project_root),
-        "--source-results-dir", str(args.source_results_dir),
+        "--source-results-dir", str(args.results_dir),
         "--results-dir", str(args.results_dir),
-        "--horizons", horizons,
+        "--horizons", ",".join(str(h) for h in parsed_horizons),
     ], args.dry_run)
 
 
@@ -125,7 +151,6 @@ def main():
     parser = argparse.ArgumentParser(description="Run Tonini forecasting experiments.")
     parser.add_argument("--project-root", type=Path, default=PROJECT_ROOT)
     parser.add_argument("--results-dir", type=Path, default=RESULTS_DIR)
-    parser.add_argument("--source-results-dir", type=Path, default=PROJECT_ROOT / "results")
     parser.add_argument(
         "--rscript",
         default=DEFAULT_RSCRIPT,
