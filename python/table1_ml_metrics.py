@@ -36,11 +36,10 @@ def metrics_frame(method_name, features, y_true, y_pred, train_values):
             "RMSE": rmse,
             "MAE": mae,
             "MASE": mase,
-            "AVG_SELECTED_VARIABLES": np.nan,
         }
     )
     mean = out[["RMSE", "MAE", "MASE"]].mean(numeric_only=True)
-    out.loc[len(out)] = ["fixed-split", "", method_name, "MEAN", *mean.tolist(), np.nan]
+    out.loc[len(out)] = ["fixed-split", "", method_name, "MEAN", *mean.tolist()]
     return out
 
 

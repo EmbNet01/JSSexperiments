@@ -74,11 +74,10 @@ metrics_from_predictions <- function(dataset, method, features, y_true, y_pred, 
   out <- data.frame(Setting = "fixed-split", Dataset = dataset, Method = method,
                     Variable = features, RMSE = as.numeric(rmse),
                     MAE = as.numeric(mae), MASE = as.numeric(mase),
-                    AVG_SELECTED_VARIABLES = NA_real_,
                     stringsAsFactors = FALSE)
   out[nrow(out) + 1, ] <- list("fixed-split", dataset, method, "MEAN",
                                mean(rmse, na.rm = TRUE), mean(mae, na.rm = TRUE),
-                               mean(mase, na.rm = TRUE), avg_selected)
+                               mean(mase, na.rm = TRUE))
   out
 }
 
