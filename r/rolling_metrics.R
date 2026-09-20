@@ -87,8 +87,8 @@ for (h in args$horizons) {
     n_windows <- nrow(forecasts)
     mase_den <- mase_denominator(n_windows, 1)
     specs <- list(
-      list("ARMAr-LASSO", paste0("^X[0-9]+ ARMAr_lasso h", h, " er$"), "ARMAr_lasso positives"),
-      list("LASSO", paste0("^X[0-9]+ lasso h", h, " er$"), "lasso positives")
+      list("ARMAr-LASSO", paste0("^X[0-9]+ ARMAr_lasso h", h, " er$"), NA),
+      list("LASSO", paste0("^X[0-9]+ lasso h", h, " er$"), NA)
     )
   } else {
     stop("Unsupported setting: ", args$setting)
@@ -127,6 +127,9 @@ for (h in args$horizons) {
 }
 
 out <- do.call(rbind, rows)
+if (setting == "rolling-predicted-regressors") {
+  out$AVG_SELECTED_VARIABLES <- NULL
+}
 dir.create(args$results_dir, recursive = TRUE, showWarnings = FALSE)
 output_method_slug <- if (tolower(args$method) == "all") "all_methods" else method_slug
 out_path <- file.path(args$results_dir, paste0(gsub("-", "_", setting), "_", output_method_slug, "_metrics.csv"))
