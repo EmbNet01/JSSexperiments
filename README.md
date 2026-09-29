@@ -113,12 +113,6 @@ python reproduce.py run \
   --horizon 2
 ```
 
-The command first runs the rolling-window estimation only for the requested
-method and writes the generated forecasts to
-`results/rolling_observed_armar_lasso_forecasts_h2.rds`. It then computes and
-prints the requested method's metrics. No precomputed forecast file is
-required.
-
 
 ### `rolling-predicted-regressors`
 
@@ -142,17 +136,6 @@ python reproduce.py run \
   --horizon 3
 ```
 
-The command first regenerates the requested method's recursive multi-step
-forecasts in `results/rolling_predicted_lasso_forecasts.rds` and then computes
-the requested horizon's metrics. No precomputed forecast file is required.
-
-
-For both rolling settings, a single `run` command estimates only the selected
-method and prints and saves exactly one result row at the selected horizon.
-Rolling estimation is still more expensive than the fixed-split experiment:
-the selected model is fitted again for every window and every target variable.
-Every rolling command regenerates its forecasts from scratch before computing
-the requested metrics.
 
 ## Metrics And Outputs
 
@@ -169,50 +152,6 @@ which is univariate and performs no variable selection. Following the paper,
 the `rolling-predicted-regressors` output does not include this column.
 
 
-## Run Complete Experiments
-
-Run all fixed-split methods on all datasets:
-
-```bash
-python reproduce.py run-all --setting fixed-split
-```
-
-Limit the datasets when needed:
-
-```bash
-python reproduce.py run-all --setting fixed-split \
-  --datasets exathlon1 materna pod_metrics
-```
-
-Compute all methods and horizons for the rolling setting with observed
-regressors:
-
-```bash
-python reproduce.py run-all --setting rolling-observed-regressors
-```
-
-Compute all methods and horizons for the rolling setting with predicted
-regressors:
-
-```bash
-python reproduce.py run-all --setting rolling-predicted-regressors
-```
-
-A subset of rolling horizons can be selected with, for example,
-`--horizons 2,3,4`.
-
-
-## Dry Run
-
-Use `--dry-run` before `run` or `run-all` to inspect the backend command
-without executing an experiment:
-
-```bash
-python reproduce.py --dry-run run \
-  --setting rolling-predicted-regressors \
-  --method armar-lasso \
-  --horizon 4
-```
 
 ## Folder Layout
 
