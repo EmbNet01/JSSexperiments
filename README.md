@@ -37,13 +37,6 @@ python reproduce.py --rscript /path/to/Rscript run \
 
 ## Experimental Settings
 
-The general interface to reproduces the experiments is:
-
-```bash
-python reproduce.py run --setting SETTING --method METHOD [options]
-```
-
-
 ### `fixed-split`
 
 The model is fitted on a fixed training set and evaluated on a separate test
