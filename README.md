@@ -1,7 +1,6 @@
 # Reproducibility
 
-This folder reproduces the forecasting experiments through a single Python
-interface:
+This folder reproduces the forecasting experiments of the paper "Efficient and explainable multivariate workload prediction with sparse models":
 
 ```bash
 python reproduce.py run --setting SETTING --method METHOD [options]
