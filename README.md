@@ -1,10 +1,6 @@
 # Reproducibility
 
-This folder reproduces the forecasting experiments of the paper "Efficient and explainable multivariate workload prediction with sparse models":
-
-```bash
-python reproduce.py run --setting SETTING --method METHOD [options]
-```
+This folder provides the code for the forecasting experiments reported in the paper "Efficient and explainable multivariate workload prediction with sparse models".
 
 
 ## Installation
@@ -40,6 +36,7 @@ python reproduce.py --rscript /path/to/Rscript run \
 ```
 
 ## Experimental Settings
+
 
 ### `fixed-split`
 
